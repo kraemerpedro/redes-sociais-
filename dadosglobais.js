@@ -1,25 +1,27 @@
 const url = 'https://raw.githubusercontent.com/guilhermeonrails/api/main/dados-globais.json';
 
-
 async function visualizarInformacoesGlobais(){
     const res = await fetch(url);
     const dados = await res.json();
-const pessoasmudo= (dados. total-pessoas-mundo)/1e9
-const pessoasconectadas =((dados.total_pessoas_conectadas)/1e9).tofixed(2)
-const horas = parseInt((dados.tempo-medio)).tofixed(2)
-const minutos = Math.round((daods.tempo_medio-horas))*1000.tofixed(2)
-const porcentagem = ((pessoasconectadas/pessoasmudo))
+    const PessoasMundo = ((dados.total_pessoas_mundo)/1e9).toFixed(2)
+    const PessoasConectadas = ((dados.total_pessoas_conectadas)/1e9).toFixed(2)
+    const Horas = parseInt(dados.tempo_medio)
+    const Minutos = Math.round((dados.tempo_medio - Horas)*100).toFixed(2)
+    const Porcentagem = ((PessoasConectadas/PessoasMundo)*100).toFixed(2)
+
+
     const paragrafo = document.createElement('p');
     paragrafo.classList.add('graficos-container__texto');
     paragrafo.innerHTML = `Você sabia que o mundo tem 
-    <span>${pessoas-mundo} </span> bilhoes de pessoas e que aproximadamente 
-    <span>${pessoasconectadas} </span> bilhoes estão conectadas em alguma rede social e passam em média <span>${horas}</span> horas e <span>$(minutos)<span/> conectadas
-    <br>isto é impressionante pois cerca de <span>$(porcentagem )<span/> de pessoas usam alguma rede social  `
+    <span>${PessoasMundo} </span> bilhões de pessoas e que aproximadamente 
+    <span>${PessoasConectadas} </span> bilhões estão conectadas em alguma 
+    rede social e passam em média <span>${Horas}</span> horas e <span> ${Minutos}</span> 
+    minutos conectadas<br> isto é impressionante pois cerca de <span> ${Porcentagem}% </span> 
+    de pessoas no mundo utilizam alguma rede social.`
 
     const container = document.getElementById('graficos-container');
     container.appendChild(paragrafo);
 
-   
 }
 
 visualizarInformacoesGlobais()
